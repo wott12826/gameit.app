@@ -140,6 +140,7 @@ app.get('/api/games', (req, res) => {
   let result = [...games];
   const { sort, filter, search } = req.query;
 
+  // Фильтрация
   if (filter === 'featured') {
     result = result.filter(game => game.featured);
   }
@@ -147,13 +148,19 @@ app.get('/api/games', (req, res) => {
     const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     result = result.filter(game => new Date(game.createdAt) > weekAgo);
   }
+
+  // Поиск
   if (search) {
     result = result.filter(game => game.title.toLowerCase().includes(search.toLowerCase()));
   }
+
+  // Сортировка
   if (sort === 'newest') {
     result = result.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   }
-  // Можно добавить другие сортировки
+  if (sort === 'featured_at') {
+    result = result.sort((a, b) => (b.marketCap || 0) - (a.marketCap || 0));
+  }
 
   res.json(result);
 });
