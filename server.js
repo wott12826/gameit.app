@@ -129,27 +129,23 @@ app.get('/fonts/:font', async (req, res) => {
   }
 });
 
-// API routes
-app.get('/api/online-users', async (req, res) => {
+// Universal API proxy for all /api/* requests
+app.use('/api', async (req, res) => {
+  const url = `https://gameit.app${req.originalUrl}`;
   try {
-    const response = await fetch('https://gameit.app/api/online-users');
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    console.error('Error fetching online users:', error);
-    res.json({ count: 0 });
-  }
-});
-
-app.get('/api/games', async (req, res) => {
-  try {
-    const category = req.query.category;
-    const response = await fetch(`https://gameit.app/api/games${category ? `?category=${category}` : ''}`);
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    console.error('Error fetching games:', error);
-    res.json([]);
+    const response = await fetch(url, {
+      method: req.method,
+      headers: req.headers,
+      body: req.method !== 'GET' && req.method !== 'HEAD' ? req.body : undefined,
+    });
+    response.headers.forEach((value, key) => {
+      if (key.toLowerCase() !== 'transfer-encoding') {
+        res.setHeader(key, value);
+      }
+    });
+    response.body.pipe(res);
+  } catch {
+    res.status(502).send('API proxy error');
   }
 });
 
