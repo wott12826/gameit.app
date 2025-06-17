@@ -1,0 +1,18 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+/* Fallback fonts */
+@font-face {
+  font-family: 'ABCDiatypePixel';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Arial');
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Arial');
+}
