@@ -1,0 +1,11 @@
+{
+  "rewrites": [
+    { "source": "/api/:match*", "destination": "https://gameit.app/api/:match*" },
+    { "source": "/_next/:match*", "destination": "https://gameit.app/_next/:match*" },
+    { "source": "/fonts/:match*", "destination": "https://gameit.app/fonts/:match*" },
+    { "source": "/css2", "destination": "https://gameit.app/css2" },
+    { "source": "/play/:game", "destination": "https://gameit.app/play/:game" },
+    { "source": "/tokens", "destination": "https://gameit.app/tokens" },
+    { "source": "/my-games", "destination": "https://gameit.app/my-games" }
+  ]
+} 
