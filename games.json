@@ -1,0 +1,20 @@
+[
+  {
+    "id": "pepe_runner_extreme",
+    "title": "Pepe Runner Extreme",
+    "createdAt": "2024-06-01T12:00:00Z",
+    "featured": true
+  },
+  {
+    "id": "sol_quiz_master",
+    "title": "Sol Quiz Master",
+    "createdAt": "2024-05-20T12:00:00Z",
+    "featured": false
+  },
+  {
+    "id": "floki_quest_rpg",
+    "title": "Floki Quest RPG",
+    "createdAt": "2024-05-15T12:00:00Z",
+    "featured": true
+  }
+] 

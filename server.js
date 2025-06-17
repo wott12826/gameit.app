@@ -3,6 +3,7 @@ const path = require('path');
 const fetch = require('node-fetch');
 const app = express();
 const port = 5500;
+const games = require('./games.json');
 
 // Add CSP headers
 app.use((req, res, next) => {
@@ -132,6 +133,29 @@ app.get('/fonts/:font', async (req, res) => {
   } catch {
     res.status(404).send('Not found');
   }
+});
+
+// Local games API with sort, filter, search
+app.get('/api/games', (req, res) => {
+  let result = [...games];
+  const { sort, filter, search } = req.query;
+
+  if (filter === 'featured') {
+    result = result.filter(game => game.featured);
+  }
+  if (filter === 'freshly_minted') {
+    const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    result = result.filter(game => new Date(game.createdAt) > weekAgo);
+  }
+  if (search) {
+    result = result.filter(game => game.title.toLowerCase().includes(search.toLowerCase()));
+  }
+  if (sort === 'newest') {
+    result = result.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  }
+  // Можно добавить другие сортировки
+
+  res.json(result);
 });
 
 // Universal API proxy for all /api/* requests
