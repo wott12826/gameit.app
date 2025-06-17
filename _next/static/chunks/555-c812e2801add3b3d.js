@@ -592,47 +592,53 @@
                                 })
                             }), (0, s.jsxs)("nav", {
                                 className: "py-4",
-                                children: [(0, s.jsxs)(i(), {
-                                    href: "/",
-                                    className: G("/"),
-                                    children: [(0, s.jsx)("div", {
-                                        className: "w-5 h-5 flex items-center justify-center",
-                                        children: (0, s.jsx)(d.A, {
-                                            size: 18
-                                        })
-                                    }), (0, s.jsx)("span", {
-                                        className: "font-medium",
-                                        children: "dashboard"
-                                    })]
-                                }), (0, s.jsxs)(i(), {
-                                    href: "/tokens",
-                                    className: G("/tokens"),
-                                    children: [(0, s.jsx)("div", {
-                                        className: "w-5 h-5 flex items-center justify-center",
-                                        children: (0, s.jsx)(m.A, {
-                                            size: 18
-                                        })
-                                    }), (0, s.jsx)("span", {
-                                        children: "top tokens"
-                                    })]
-                                }), (0, s.jsxs)(i(), {
-                                    href: "#",
-                                    onClick: e => {
-                                        e.preventDefault(), I(!0)
-                                    },
-                                    className: G("/leaderboard"),
-                                    children: [(0, s.jsx)("div", {
-                                        className: "w-5 h-5 flex items-center justify-center",
-                                        children: (0, s.jsx)(x.A, {
-                                            size: 18
-                                        })
-                                    }), (0, s.jsx)("span", {
-                                        children: "leaderboard"
-                                    }), (0, s.jsx)("span", {
-                                        className: "ml-auto text-xs px-1.5 py-0.5 bg-emerald-500 text-white rounded-md",
-                                        children: "soon"
-                                    })]
-                                })]
+                                children: [
+                                    (0, s.jsxs)(i(), {
+                                        href: "/",
+                                        className: G("/"),
+                                        children: [
+                                            (0, s.jsx)("div", {
+                                                className: "w-5 h-5 flex items-center justify-center",
+                                                children: (0, s.jsx)(d.A, { size: 18 })
+                                            }),
+                                            (0, s.jsx)("span", {
+                                                className: "font-medium",
+                                                children: "dashboard"
+                                            })
+                                        ]
+                                    }),
+                                    (0, s.jsxs)(i(), {
+                                        href: "/tokens",
+                                        className: G("/tokens"),
+                                        children: [
+                                            (0, s.jsx)("div", {
+                                                className: "w-5 h-5 flex items-center justify-center",
+                                                children: (0, s.jsx)(m.A, { size: 18 })
+                                            }),
+                                            (0, s.jsx)("span", {
+                                                children: "top tokens"
+                                            })
+                                        ]
+                                    }),
+                                    (0, s.jsxs)(i(), {
+                                        href: "#",
+                                        onClick: e => { e.preventDefault(), I(!0) },
+                                        className: G("/leaderboard"),
+                                        children: [
+                                            (0, s.jsx)("div", {
+                                                className: "w-5 h-5 flex items-center justify-center",
+                                                children: (0, s.jsx)(x.A, { size: 18 })
+                                            }),
+                                            (0, s.jsx)("span", {
+                                                children: "leaderboard"
+                                            }),
+                                            (0, s.jsx)("span", {
+                                                className: "ml-auto text-xs px-1.5 py-0.5 bg-emerald-500 text-white rounded-md",
+                                                children: "soon"
+                                            })
+                                        ]
+                                    })
+                                ]
                             }), (0, s.jsxs)("div", {
                                 className: "mt-auto p-4 border-t border-zinc-800",
                                 children: [(0, s.jsxs)("a", {
