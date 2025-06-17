@@ -102,6 +102,18 @@
             .mb-8, .mb-16, .mb-6, .mb-4, .mb-3 {
                 margin-bottom: 1rem !important;
             }
+            .border-r.border-zinc-800.fixed.open {
+                transform: translateX(0);
+            }
+            .sidebar-overlay {
+                display: none;
+                position: fixed; inset: 0;
+                background: rgba(0,0,0,0.5);
+                z-index: 49;
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
         }
     </style>
     <script src="_next/static/chunks/7a38de25-7b3db2cdcf7ecebd.js?dpl=dpl_9DdztR9Dj5gv3E8Yhbuh6JfgoRLu"
@@ -145,7 +157,7 @@
             <div style="position:absolute;inset:0;background-size:20px 20px;background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.07) 0, rgba(255,255,255,0.07) 2px, transparent 2px, transparent 8px);animation:patternMove 10s linear infinite;z-index:1;opacity:0.5"
                 class="jsx-afea1927bc347052"></div>
         </div>
-        <div class="border-r border-zinc-800 flex flex-col fixed top-0 left-0 z-20 bg-[#121212]/90 backdrop-blur-md h-screen"
+        <div id="sidebar" class="border-r border-zinc-800 flex flex-col fixed top-0 left-0 z-20 bg-[#121212]/90 backdrop-blur-md h-screen"
             style="width:260px;opacity:1">
             <div class="p-4 flex items-center gap-2"><img src="site_logo.png" alt="Gameit Logo"
                     class="object-contain w-8 h-8 rounded-md"><span
@@ -484,6 +496,23 @@
 
         // Загружаем игры при первой загрузке страницы
         fetchGames();
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var burger = document.getElementById('burger');
+        var sidebar = document.getElementById('sidebar');
+        var overlay = document.getElementById('sidebarOverlay');
+        if (burger && sidebar && overlay) {
+            burger.onclick = function() {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+            };
+            overlay.onclick = function() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+            };
+        }
     });
     </script>
 </body>

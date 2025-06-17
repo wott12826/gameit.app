@@ -161,8 +161,10 @@
             <div style="position:absolute;inset:0;background-size:20px 20px;background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.07) 0, rgba(255,255,255,0.07) 2px, transparent 2px, transparent 8px);animation:patternMove 10s linear infinite;z-index:1;opacity:0.5"
                 class="jsx-afea1927bc347052"></div>
         </div>
-        <div class="border-r border-zinc-800 flex flex-col fixed top-0 left-0 z-20 bg-[#121212]/90 backdrop-blur-md h-screen"
-            style="width:260px;opacity:1">
+        <!-- Бургер-кнопка (добавить id) -->
+        <button id="burger" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent h-8 w-8 text-zinc-400 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button>
+        <!-- Sidebar (добавить id) -->
+        <div id="sidebar" class="border-r border-zinc-800 flex flex-col fixed top-0 left-0 z-20 bg-[#121212]/90 backdrop-blur-md h-screen" style="width:260px;opacity:1">
             <div class="p-4 flex items-center gap-2"><img src="site_logo.png" alt="Gameit Logo"
                     class="object-contain w-8 h-8 rounded-md"><span
                     class="font-pixel text-xl tracking-tight">gameit</span><span
@@ -235,6 +237,8 @@
                 <p class="text-xs text-zinc-500">gameit is not affiliated with or endorsed by any game company.</p>
             </div>
         </div>
+        <!-- Overlay -->
+        <div id="sidebarOverlay" class="sidebar-overlay"></div>
         <div class="flex-1 flex flex-col relative z-10 transition-all duration-300 ease-in-out ml-[260px]">
             <header
                 class="h-14 border-b border-zinc-800 flex items-center justify-between px-6 bg-[#121212]/80 backdrop-blur-md">
@@ -1461,6 +1465,44 @@
     <script>self.__next_f.push([1, "a:{}\nb:{}\n"])</script>
     <script>self.__next_f.push([1, "10:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\nd:null\n"])</script>
     <script>self.__next_f.push([1, "e:null\n12:[[\"$\",\"title\",\"0\",{\"children\":\"gameit - Gamify Your Token\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Turn your Solana tokens into interactive games\"}],[\"$\",\"meta\",\"2\",{\"name\":\"generator\",\"content\":\"v0.dev\"}]]\n"])</script>
+    <!-- JS для открытия/закрытия sidebar -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var burger = document.getElementById('burger');
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebarOverlay');
+      if (burger && sidebar && overlay) {
+        burger.onclick = function() {
+          sidebar.classList.add('open');
+          overlay.classList.add('active');
+        };
+        overlay.onclick = function() {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('active');
+        };
+      }
+    });
+    </script>
+    <!-- CSS для sidebar и overlay -->
+    @media (max-width: 768px) {
+      .border-r.border-zinc-800.fixed {
+        /* ...ваши стили... */
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+      }
+      .border-r.border-zinc-800.fixed.open {
+        transform: translateX(0);
+      }
+      .sidebar-overlay {
+        display: none;
+        position: fixed; inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 49;
+      }
+      .sidebar-overlay.active {
+        display: block;
+      }
+    }
 </body>
 
 </html>
