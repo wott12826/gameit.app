@@ -74,15 +74,20 @@ app.get('/my-games', (req, res, next) => {
   }
 });
 
-// Proxy /play/:game to gameit.app
-app.get('/play/:game', async (req, res) => {
-  const gameName = req.params.game;
-  try {
-    const response = await fetch(`https://gameit.app/play/${gameName}`);
-    const html = await response.text();
-    res.send(html);
-  } catch (error) {
-    res.status(404).send('Game not found');
+// Serve local play games if file exists, otherwise proxy to original site
+app.get('/play/:game', async (req, res, next) => {
+  const fs = require('fs');
+  const localGamePath = path.join(__dirname, 'play', `${req.params.game}.html`);
+  if (fs.existsSync(localGamePath)) {
+    res.sendFile(localGamePath);
+  } else {
+    try {
+      const response = await fetch(`https://gameit.app/play/${req.params.game}`);
+      const html = await response.text();
+      res.send(html);
+    } catch (error) {
+      res.status(404).send('Game not found');
+    }
   }
 });
 
