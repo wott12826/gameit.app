@@ -2,7 +2,7 @@ Uri: https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js
 File Name: C:\Downloaded Web Sites\gameit.app\ajax\libs\three.js\r134\three.min-9.js
 Content Type: application/javascript
 
-Uri: https://gameit.app/logo.png
+Uri: https://gameit.app/site_logo.png
 File Name: C:\Downloaded Web Sites\gameit.app\logo-10.png
 Content Type: image/png
 
@@ -136,7 +136,7 @@ Uri: https://gameit.app/_next/static/css/ecc05e090a8b70fb.css?dpl=dpl_9DdztR9Dj5
 File Name: C:\Downloaded Web Sites\gameit.app\_next\static\css\ecc05e090a8b70fb.css
 Content Type: text/css
 
-Uri: https://griffain.com/logo.png
+Uri: https://griffain.com/site_logo.png
 File Name: C:\Downloaded Web Sites\gameit.app\logo-1.png
 Content Type: image/png
 
@@ -196,7 +196,7 @@ Uri: https://pump.mypinata.cloud/ipfs/QmTQrP6R7ieRSbKzwzLAy1i8c2U66b7LM6bSUmK1df
 File Name: C:\Downloaded Web Sites\gameit.app\ipfs\QmTQrP6R7ieRSbKzwzLAy1i8c2U66b7LM6bSUmK1dfYc5b
 Content Type: image/jpeg
 
-Uri: https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R/logo.png
-File Name: C:\Downloaded Web Sites\gameit.app\solana-labs\token-list\main\assets\mainnet\4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R\logo.png
+Uri: https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R/site_logo.png
+File Name: C:\Downloaded Web Sites\gameit.app\solana-labs\token-list\main\assets\mainnet\4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R\site_logo.png
 Content Type: image/png
 
