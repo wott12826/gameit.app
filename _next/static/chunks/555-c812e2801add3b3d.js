@@ -671,7 +671,7 @@
                                         children: "Telegram"
                                     })]
                                 }), (0, s.jsxs)("a", {
-                                    href: "https://dexscreener.com/solana/h7puzizjrvxalfz5xvgvbrsxvwvzvhwln1yc8ncu7ykr",
+                                    href: "https://dexscreener.com/solana/97h3dtCpUDjEKwzqk6FXvNceyxWDuWfThk7YcH5pump",
                                     target: "_blank",
                                     rel: "noopener noreferrer",
                                     className: "w-full flex items-center gap-3 px-4 py-2 mb-2 rounded-md text-zinc-400 hover:bg-zinc-800/80 hover:text-white font-pixel",
@@ -684,7 +684,7 @@
                                     })]
                                 }), (0, s.jsx)("p", {
                                     className: "text-xs text-zinc-500",
-                                    children: "gameit is not affiliated with or endorsed by any game company."
+                                    children: "Create. Play. Earn."
                                 })]
                             })]
                         })
