@@ -190,7 +190,7 @@
         </div>
         <div id="sidebar" class="border-r border-zinc-800 flex flex-col fixed top-0 left-0 z-20 bg-[#121212]/90 backdrop-blur-md h-screen block md:hidden" style="width:260px;opacity:1">
             <button id="closeSidebar"
-                class="absolute top-4 right-4 z-30 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent h-8 w-8 text-zinc-400 hover:text-white block md:hidden"
+                class="absolute top-4 right-4 z-50 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent h-8 w-8 text-zinc-400 hover:text-white block md:hidden"
                 aria-label="Закрыть">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x">
                     <path d="M18 6 6 18"></path>
@@ -275,13 +275,13 @@
             <header
                 class="h-14 border-b border-zinc-800 flex items-center justify-between px-6 bg-[#121212]/80 backdrop-blur-md">
                 <div class="flex items-center gap-3"><button id="burger"
-                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent h-8 w-8 text-zinc-400 hover:text-white"><svg
-                            xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-x">
-                            <path d="M18 6 6 18"></path>
-                            <path d="m6 6 12 12"></path>
-                        </svg></button>
+                        class="fixed top-4 left-4 z-50 block md:hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent h-8 w-8 text-zinc-400 hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
+                            <line x1="4" x2="20" y1="12" y2="12"></line>
+                            <line x1="4" x2="20" y1="6" y2="6"></line>
+                            <line x1="4" x2="20" y1="18" y2="18"></line>
+                        </svg>
+                    </button>
                     <div class="flex items-center gap-2 ml-3">
                         <div class="w-2 h-2 rounded-full bg-emerald-500"></div><span
                             class="text-sm font-pixel text-emerald-400">0<!-- --> players online</span>
@@ -438,141 +438,28 @@
     <script>self.__next_f.push([1, "e:null\n12:[[\"$\",\"title\",\"0\",{\"children\":\"gameit - Gamify Your Token\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Turn your Solana tokens into interactive games\"}],[\"$\",\"meta\",\"2\",{\"name\":\"generator\",\"content\":\"v0.dev\"}]]\n"])</script>
     <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Фильтры
-        const filterButtons = document.querySelectorAll('button[data-filter]');
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', function () {
-                filterButtons.forEach(b => b.classList.remove('bg-white', 'text-black', 'border-transparent', 'hover:bg-zinc-200'));
-                this.classList.add('bg-white', 'text-black', 'border-transparent', 'hover:bg-zinc-200');
-                // Запрос на сервер с фильтром
-                fetchGames({ filter: this.dataset.filter });
-            });
-        });
-
-        // Сортировки
-        const sortButtons = document.querySelectorAll('button[data-sort]');
-        sortButtons.forEach(btn => {
-            btn.addEventListener('click', function () {
-                sortButtons.forEach(b => b.classList.remove('bg-white', 'text-black', 'border-transparent', 'hover:bg-zinc-200'));
-                this.classList.add('bg-white', 'text-black', 'border-transparent', 'hover:bg-zinc-200');
-                // Запрос на сервер с сортировкой
-                fetchGames({ sort: this.dataset.sort });
-            });
-        });
-
-        // Поиск
-        const searchInput = document.querySelector('input[placeholder="search games..."]');
-        if (searchInput) {
-            searchInput.addEventListener('input', function () {
-                fetchGames({ search: this.value });
-            });
-        }
-
-        // Функция для рендеринга одной игры
-        function renderGame(game) {
-            return `
-                <div class="bg-zinc-800/60 rounded-xl overflow-hidden flex flex-col border border-zinc-700/50">
-                    <div class="h-48 bg-zinc-700/50">
-                        ${game.image ? `<img src="${game.image}" alt="${game.title}" class="w-full h-full object-cover">` : ''}
-                    </div>
-                    <div class="p-4 space-y-3">
-                        <h3 class="text-lg font-medium">${game.title}</h3>
-                        <p class="text-sm text-zinc-400">${game.description || ''}</p>
-                        <button class="w-full mt-4 bg-emerald-500 hover:bg-emerald-600 text-white font-pixel py-2 px-4 rounded-md">
-                            Play Now
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Функция для обновления списка игр
-        function updateGamesList(games) {
-            const gamesContainer = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3.gap-6');
-            if (gamesContainer) {
-                gamesContainer.innerHTML = games.map(game => renderGame(game)).join('');
-            }
-        }
-
-        // Универсальная функция для запроса и обновления списка игр
-        function fetchGames(params = {}) {
-            const url = new URL('/api/games', window.location.origin);
-            Object.entries(params).forEach(([key, value]) => {
-                if (value) url.searchParams.set(key, value);
-            });
-            
-            // Показываем состояние загрузки
-            const gamesContainer = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3.gap-6');
-            if (gamesContainer) {
-                gamesContainer.innerHTML = `
-                    <div class="col-span-full flex justify-center items-center py-8">
-                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500"></div>
-                    </div>
-                `;
-            }
-
-            fetch(url)
-                .then(res => res.json())
-                .then(data => {
-                    if (data.games && Array.isArray(data.games)) {
-                        updateGamesList(data.games);
-                    } else {
-                        console.error('Invalid games data received:', data);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching games:', error);
-                    // Показываем сообщение об ошибке
-                    if (gamesContainer) {
-                        gamesContainer.innerHTML = `
-                            <div class="col-span-full text-center py-8 text-red-500">
-                                Error loading games. Please try again.
-                            </div>
-                        `;
-                    }
-                });
-        }
-
-        // Загружаем игры при первой загрузке страницы
-        fetchGames();
-    });
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
         var burger = document.getElementById('burger');
         var sidebar = document.getElementById('sidebar');
         var overlay = document.getElementById('sidebarOverlay');
-        if (burger && sidebar && overlay) {
-            burger.onclick = function() {
-                sidebar.classList.add('open');
-                overlay.classList.add('active');
-            };
-            overlay.onclick = function() {
-                sidebar.classList.remove('open');
-                overlay.classList.remove('active');
-            };
+        var closeSidebar = document.getElementById('closeSidebar');
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('active');
+            burger.style.display = 'none';
+        }
+        function hideSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+            burger.style.display = '';
+        }
+
+        if (burger && sidebar && overlay && closeSidebar) {
+            burger.onclick = openSidebar;
+            overlay.onclick = hideSidebar;
+            closeSidebar.onclick = hideSidebar;
         }
     });
-    </script>
-    <script>
-    const burger = document.getElementById('burger');
-    const sidebar = document.getElementById('sidebar');
-    const closeSidebar = document.getElementById('closeSidebar');
-
-    function openSidebar() {
-        sidebar.style.display = 'block';
-    }
-    function hideSidebar() {
-        sidebar.style.display = 'none';
-    }
-
-    burger && burger.addEventListener('click', openSidebar);
-    closeSidebar && closeSidebar.addEventListener('click', hideSidebar);
-
-    // По умолчанию скрываем сайдбар на мобильных
-    if (window.innerWidth < 768) {
-        sidebar.style.display = 'none';
-    }
     </script>
 </body>
 
