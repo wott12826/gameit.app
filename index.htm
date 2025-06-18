@@ -459,6 +459,25 @@
             overlay.onclick = hideSidebar;
             closeSidebar.onclick = hideSidebar;
         }
+
+        // Закрытие по клику вне сайдбара и вне бургера
+        document.addEventListener('click', function(event) {
+            if (
+                sidebar.classList.contains('open') &&
+                !sidebar.contains(event.target) &&
+                !burger.contains(event.target)
+            ) {
+                hideSidebar();
+            }
+        });
+
+        // Закрытие при переходе по ссылкам внутри навигации сайдбара
+        var sidebarLinks = sidebar.querySelectorAll('nav a');
+        sidebarLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                hideSidebar();
+            });
+        });
     });
     </script>
 </body>
